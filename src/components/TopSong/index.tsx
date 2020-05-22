@@ -18,7 +18,7 @@ function TopSong(props: TopSongProps) {
     if (item && item.id && !item.loading)
       props.dispatch({
         type: 'play/fetchSongUrl',
-        payload: {id: item.id, playTime: item.playTime,}
+        payload: {id: item.id, }
       })
   };
 

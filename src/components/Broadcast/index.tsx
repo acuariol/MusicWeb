@@ -25,7 +25,7 @@ const styles =()=> createStyles({
 
 })
 
-const duration = 300;
+const duration = 380;
 
 const defaultStyle = {
   transition: `transform ${duration}ms cubic-bezier(0, 0.55, 0.45, 1), opacity ${duration}ms ease`,

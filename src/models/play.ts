@@ -81,8 +81,7 @@ const PlayModel: PlayModelType = {
           yield put({
             type: 'setState',
             payload: {
-              url: data[0].url,
-              playTime: payload.playTime,
+              url: Array.isArray(data) ? data[0].url : '',
               songId: payload.id
             },
           });

@@ -23,6 +23,6 @@ export default defineConfig({
   title: false,
   ignoreMomentLocale: true,
 
-  publicPath: '/beatz/',
-  base: '/beatz/',
+  // publicPath: '/beatz/',
+  // base: '/beatz/',
 });

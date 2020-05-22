@@ -14,9 +14,6 @@ type State = {};
 
 class FeatureRanking extends React.PureComponent<Props, State> {
 
-  componentDidMount() {
-
-  }
 
   render() {
     const {dispatch} = this.props

@@ -10,6 +10,7 @@ import TopSong from '@/components/TopSong'
 import TopMv from "@/components/TopMv";
 import Discover from "@/components/Discover";
 import FeatureRanking from "@/components/FeatureRanking";
+import HotSearch from '@/components/HotSearch'
 import styles from './styles.less'
 
 interface HomeProps {
@@ -33,7 +34,6 @@ class Home extends Component<HomeProps, State> {
     this.props.dispatch({
       type: 'song/fetchTopSong'
     })
-
 
 
   }
@@ -81,6 +81,7 @@ class Home extends Component<HomeProps, State> {
             <Grid item md={4} lg={4}>
               <div className={styles.sidebar}>
                 <TopMv />
+                <HotSearch />
               </div>
             </Grid>
           </Hidden>

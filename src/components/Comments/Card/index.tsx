@@ -6,12 +6,12 @@ import {
   Avatar,
   Typography,
   IconButton,
-  CardContent
+  CardContent, Theme
 } from "@material-ui/core";
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       color: '#000',
@@ -28,7 +28,9 @@ const useStyles = makeStyles(() =>
       alignItems: 'center'
     },
     imgNickText: {
-      paddingLeft: '1rem'
+      paddingLeft: '1rem',
+      fontWeight: 'bold',
+      color: theme.palette.primary.main
     },
     cardContent: {
       padding: '0.8rem 0'
