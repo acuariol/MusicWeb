@@ -1,0 +1,48 @@
+import {MenuDataItem} from '@ant-design/pro-layout';
+import {GlobalModelState} from './global';
+import {DefaultSettings as SettingModelState} from '../../config/defaultSettings';
+import {UserModelState} from './user';
+import {SongModelState} from './song';
+import {PlayModelState} from './play';
+import {MvModelState} from './mv';
+
+
+export {GlobalModelState, SettingModelState, UserModelState, SongModelState, PlayModelState,MvModelState};
+
+
+export interface Dispatch {
+  type: string,
+  payload?: any
+}
+
+export interface Loading {
+  global: boolean;
+  effects: { [key: string]: boolean | undefined };
+  models: {
+    global?: boolean;
+    menu?: boolean;
+    setting?: boolean;
+    user?: boolean;
+    login?: boolean;
+  };
+}
+
+export interface ConnectState {
+  global: GlobalModelState;
+  loading: Loading;
+  settings: SettingModelState;
+  user: UserModelState;
+  login: StateType;
+  song: SongModelState,
+  play: PlayModelState,
+  mv:MvModelState
+}
+
+export interface Route extends MenuDataItem {
+  routes?: Route[];
+}
+
+
+
+
+

@@ -1,0 +1,51 @@
+import React,{useState} from 'react'
+import { Transition } from 'react-transition-group';
+
+const duration = 300;
+
+const defaultStyle = {
+  transition: `opacity ${duration}ms ease-in-out`,
+  opacity: 0,
+}
+
+const transitionStyles = {
+  entering: { opacity: 1 },
+  entered:  { opacity: 1 },
+  exiting:  { opacity: 0 },
+  exited:  { opacity: 0 },
+};
+
+// @ts-ignore
+const Fade = ({ in: inProp }) => (
+  <Transition in={inProp} timeout={duration} mountOnEnter>
+    {state => (
+      <div style={{
+        ...defaultStyle,
+        ...transitionStyles[state]
+      }}>
+
+        I &apos m a fade Transition!
+      </div>
+    )}
+  </Transition>
+);
+
+
+const About: React.FC = () => {
+
+  const [inProp, setInProp] = useState(false);
+  return (
+    <div>
+      <h1>About</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquet, purus vitae eleifend tristique, lorem magna volutpat orci, et vehicula erat erat nec elit. Aenean posuere nunc ac cursus facilisis. Aenean vel porta turpis, ut iaculis justo.</p>
+
+      <Fade in={inProp}/>
+
+      <button onClick={() => setInProp(!inProp)}>
+        Click to Enter
+      </button>
+    </div>
+  )
+}
+
+export default About

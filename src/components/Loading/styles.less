@@ -1,0 +1,46 @@
+.music-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  .bar {
+    height: 30px;
+    width: 4px;
+    background-color: #fff;
+    display: inline-block;
+    transform-origin: center center;
+    border-radius: 2px;
+    margin: 0 2px;
+    animation: musicLoading 2.5s ease-in-out infinite;
+  }
+
+  .bar1{
+    animation-delay: 0.1s;
+  }
+  .bar2{
+    animation-delay: 0.25s;
+  }
+  .bar3{
+    animation-delay: 0.4s;
+  }
+  .bar4{
+    animation-delay: 0.55s;
+  }
+
+}
+
+
+@keyframes musicLoading {
+  0% {
+    transform: scaleY(0.1);
+    background-color: white;
+  }
+  50% {
+    transform: scaleY(1);
+    background-color: #F15024;
+  }
+  100% {
+    transform: scaleY(0.1);
+    background-color: white;
+  }
+}
