@@ -25,9 +25,10 @@ export type HoverItem = {
 export interface MvModelState {
   topMv: any[],
   hoverItem: HoverItem,
-  url: string
-}
+  url: string,
 
+  [propsName: string]: any
+}
 
 
 const MvModel: MvModelType = {
@@ -35,10 +36,24 @@ const MvModel: MvModelType = {
   state: {
     topMv: [],
     hoverItem: {
-      cover: 'http://p1.music.126.net/-LkI0yoGquAWFl2W3kEXIg==/109951164536308330.jpg',
+      cover: 'http://acuario.cn/assets/block16v9.png',
       id: -1,
     },
-    url: ''
+    url: '',
+
+    // mv播放器相关的状态
+    playing: false,
+    controls: false,
+    light: false,
+    volume: 0.800,
+    muted: false,
+    played: 0,
+    loaded: 0,
+    duration: 0,
+    playbackRate: 1.0,
+    loop: false,
+    loadedSeconds: 0,
+    playedSeconds: 0
   },
   effects: {
 
@@ -46,16 +61,24 @@ const MvModel: MvModelType = {
       const {code, data} = yield call(topMv, payload);
 
       if (code && code === 200) {
+
+        const list = (data || []).map((o: any, i: number) => ({
+          ...o,
+          playCount: formatNumToTenThousand(o.playCount),
+          index: i + 1
+        }))
+
         yield put({
           type: 'setState',
           payload: {
-            topMv: (data || []).map((o: any, i: number) => ({
-              ...o,
-              playCount: formatNumToTenThousand(o.playCount),
-              index: i + 1
-            }))
+            topMv: list,
+            hoverItem: {
+              cover: list[0] ? list[0].cover : 'http://acuario.cn/assets/block16v9.png',
+              id: -1,
+            }
           },
         });
+
       }
     },
 
@@ -66,6 +89,7 @@ const MvModel: MvModelType = {
           type: 'setState',
           payload: {url: data.url}
         });
+
       }
     }
 

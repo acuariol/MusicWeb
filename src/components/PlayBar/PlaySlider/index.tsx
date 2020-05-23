@@ -90,7 +90,13 @@ class HocSlider extends Component<HocSliderProps> {
   }
 
   onPlay = () => {
-    this.setPlayState({playing: true})
+    // this.setPlayState({playing: true})
+
+    const {dispatch} = this.props
+    dispatch({
+      type: 'mv/setState',
+      payload: {playing: false}
+    })
   }
 
   onError = (e: any) => {

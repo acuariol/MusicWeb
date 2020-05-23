@@ -1,51 +1,49 @@
 import * as React from 'react';
-import {Card, Chip, CircularProgress, createStyles, Theme, Typography, withStyles} from '@material-ui/core'
+import {Card, CircularProgress, createStyles, Typography, withStyles} from '@material-ui/core'
 
 import request from "umi-request";
 import {history} from "umi";
 
-const styles = (theme: Theme) => createStyles({
+import MoreButton from '@/components/Buttons/MoreButton'
+import Item from './Item'
+
+const styles = ( ) => createStyles({
   root: {
     width: '100%',
-    height: 'auto',
-    margin: '54px 0',
+    margin: '0',
     backgroundColor: '#1a1a1a',
     // backgroundColor: '#fff',
-    color: '#fff'
+    color: '#fff',
+
+    boxSizing: 'border-box'
   },
   loading: {
-    padding: '64px 0',
     display: 'flex',
-    justifyContent: 'center'
+    padding:'64px 0',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   title: {
     padding: '1.5rem 1.5rem 0'
   },
-
   chipBox: {
-    padding: '2rem 1rem',
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    '& > *': {
-      margin: theme.spacing(0.5),
-    },
+    padding: '1.9rem 0 0 0',
+
   },
-  chip:{
-    color: '#fff',
-    borderColor:'#fff'
-  }
+
 })
 
 type Props = {
-  classes: any
+  classes: any,
 };
 type State = {
   list: any[],
   loading: boolean
 };
 
-class HotSearch extends React.PureComponent<Props, State> {
+class PlaylistHighquality extends React.PureComponent<Props, State> {
 
   state = {
     list: [],
@@ -53,19 +51,20 @@ class HotSearch extends React.PureComponent<Props, State> {
   }
 
   componentDidMount() {
-    request.get(`http://106.12.40.19:3000/search/hot/detail`)
+    request.get(`http://106.12.40.19:3000/top/playlist/highquality`)
       .then((response) => {
         if (response && response.code === 200) {
-          const {data} = response;
+          const {playlists} = response;
 
-          this.setState({list: data || [], loading: false})
+          const sortList = (playlists || []).splice(0, 6)
+          this.setState({list: sortList || [], loading: false})
 
         }
 
       })
       .catch((error) => {
         this.setState({loading: false})
-        console.log(error)
+        console.log(error,'erdddddror')
       });
   }
 
@@ -73,7 +72,7 @@ class HotSearch extends React.PureComponent<Props, State> {
     const {searchWord} = item;
     window.scrollTo({
       left: 0,
-      top:0,
+      top: 0,
       behavior: 'smooth',
     })
     history.push(`/search?keywords=${searchWord}&type=1`)
@@ -88,10 +87,11 @@ class HotSearch extends React.PureComponent<Props, State> {
 
 
     return (
-      <Card className={classes.root} square>
+      <Card classes={{root: classes.root}} square>
         <Typography variant="h5" color="inherit" className={classes.title}>
-          热搜榜单
+          精品歌单
         </Typography>
+
 
         {
           loading && (
@@ -101,26 +101,21 @@ class HotSearch extends React.PureComponent<Props, State> {
           )
         }
 
-        <div className={classes.chipBox}>
-
+        <div className={classes.chipBox} hidden={loading}>
           {
             list.map((item: any) => (
-              <Chip
-                key={item.searchWord}
-                label={item.searchWord}
-                className={classes.chip}
-                size="medium"
-                onClick={() => this.onClick(item)}
-                variant="outlined"
+              <Item
+                key={item.id}
+                item={item}
               />
             ))
           }
-
         </div>
+        <MoreButton hidden={loading}/>
       </Card>
     );
   };
 }
 
 
-export default withStyles(styles)(HotSearch)
+export default withStyles(styles)(PlaylistHighquality)

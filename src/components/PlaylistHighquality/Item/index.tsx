@@ -1,10 +1,11 @@
 import React from 'react'
 
-import {createStyles, makeStyles, Theme, Typography,fade} from '@material-ui/core';
+import {Avatar, createStyles, fade, makeStyles, Theme, Typography} from '@material-ui/core';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import {Dispatch} from "@/models/connect";
 import cls from 'classnames'
+
+import {formatNumToTenThousand} from '@/utils/utils'
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   inline: {
@@ -16,7 +17,8 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     justifyContent: 'space-between',
     alignItems: 'stretch',
     flex: 1,
-    height: '100%'
+    height: '100%',
+    paddingLeft:theme.spacing(1.5)
   },
   root: {
     display: 'flex',
@@ -26,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     color: '#fff',
 
     '&:hover': {
-      backgroundColor: fade(theme.palette.primary.main,0.5),
+      backgroundColor: fade(theme.palette.primary.main, 0.5),
     },
     '&:hover $action': {
       color: '#fff',
@@ -70,25 +72,16 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 
 type ItemProps = {
   item: any,
-  dispatch: (parse: Dispatch) => void,
-  currentId: number
+
 }
 
-function Item({item, dispatch, currentId}: ItemProps) {
+function Item({item,}: ItemProps) {
 
   const classes = useStyles()
 
-  const onClick = (o: any) => {
+  const onMouseEnter = (o: any) => {
 
-    dispatch({
-      type: 'mv/setState',
-      payload: {hoverItem: o}
-    })
 
-    dispatch({
-      type: 'mv/fetchMvUrl',
-      payload: {id: o.id}
-    })
   }
 
   return (
@@ -96,19 +89,20 @@ function Item({item, dispatch, currentId}: ItemProps) {
       <ListItem
         alignItems="flex-start"
         button
-        className={cls(classes.root, currentId === item.id && classes.select)}
-        onClick={() => onClick(item)}
+        className={cls(classes.root)}
+        onClick={() => onMouseEnter(item)}
       >
-        <Typography className={classes.num}>{item.index}.</Typography>
+        <Avatar src={item.coverImgUrl} />
+
         <div className={classes.itemContent}>
           <ListItemText>
             <Typography className={classes.title}>
-              {item.name}{item.briefDesc && ` - ${item.briefDesc}`}
+              {item.name}
             </Typography>
           </ListItemText>
           <div className={classes.action}>
-            <Typography className={classes.p}>By {item.artistName}</Typography>
-            <Typography className={classes.p}>{item.playCount}播放</Typography>
+            <Typography className={classes.p}>By {item.creator.nickname}</Typography>
+            <Typography className={classes.p}>{formatNumToTenThousand(item.playCount)}播放</Typography>
           </div>
         </div>
       </ListItem>

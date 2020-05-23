@@ -46,9 +46,8 @@ const Lrc = ({
     const top = (lrcLineOffsetTopMap.get(currentIndex) || 0) -
       (lrcLineOffsetTopMap.get(Infinity) || 0) / 2
 
-
     if (autoScroll) {
-      console.log({currentIndex})
+
       const {current} = rootRef;
       if (current && currentIndex > 5) {
         current.scrollTo({

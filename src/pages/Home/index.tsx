@@ -11,6 +11,7 @@ import TopMv from "@/components/TopMv";
 import Discover from "@/components/Discover";
 import FeatureRanking from "@/components/FeatureRanking";
 import HotSearch from '@/components/HotSearch'
+import PlaylistHighquality from '@/components/PlaylistHighquality'
 import styles from './styles.less'
 
 interface HomeProps {
@@ -82,6 +83,8 @@ class Home extends Component<HomeProps, State> {
               <div className={styles.sidebar}>
                 <TopMv />
                 <HotSearch />
+
+                <PlaylistHighquality />
               </div>
             </Grid>
           </Hidden>

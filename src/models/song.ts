@@ -205,7 +205,7 @@ const loadingMock: Array<TopSongItemProps> = [
 ]
 
 export interface SongModelState {
-  banners: [],
+  banners: any[],
   topSong: Array<TopSongItemProps>,
   songs: Array<SongsItemProps>,  // 单曲
   albums: Array<albumItemProps>,
@@ -259,7 +259,9 @@ export interface SongModelType {
 const SongModel: SongModelType = {
   namespace: 'song',
   state: {
-    banners: [],
+    banners: [{
+      imageUrl:'http://acuario.cn/assets/block@1080x400.png'
+    }],
     topSong: loadingMock,
 
     // 搜索结果数据

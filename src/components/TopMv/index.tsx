@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {connect} from 'umi'
 import {ConnectState, Dispatch,} from "@/models/connect";
-import {List, Card, CardMedia} from '@material-ui/core'
+import {List, Card, CardMedia, CircularProgress} from '@material-ui/core'
 import Player from '@/components/Player'
 import {HoverItem} from '@/models/mv'
 import styles from './styles.less';
@@ -11,7 +11,8 @@ import Item from './Item'
 type Props = {
   dispatch: (parse: Dispatch) => void,
   topMv: any[],
-  hoverItem: HoverItem
+  hoverItem: HoverItem,
+  loading: boolean | undefined
 }
 
 type State = {};
@@ -28,9 +29,10 @@ class PlayMv extends React.Component<Props, State> {
 
   render() {
 
-    const {topMv, dispatch, hoverItem} = this.props
+    const {topMv, dispatch, hoverItem, loading} = this.props;
+
     return (
-      <Card square className={styles.container}>
+      <Card square className={styles.container} elevation={0}>
 
         <Card square elevation={0} className={styles.player}>
           <CardMedia
@@ -40,6 +42,14 @@ class PlayMv extends React.Component<Props, State> {
           />
           <Player />
         </Card>
+
+        {
+          loading && (
+            <div className={styles.loading}>
+              <CircularProgress />
+            </div>
+          )
+        }
 
         <List className={styles.mvListRoot} disablePadding>
           {
@@ -51,9 +61,10 @@ class PlayMv extends React.Component<Props, State> {
   };
 }
 
-const mapStateToProps = ({mv}: ConnectState) => ({
+const mapStateToProps = ({mv, loading}: ConnectState) => ({
   topMv: mv.topMv,
-  hoverItem: mv.hoverItem
+  hoverItem: mv.hoverItem,
+  loading: loading.effects['mv/fetchTopMv']
 })
 
 

@@ -1,20 +1,21 @@
 import * as React from 'react';
 import {
   Card,
-  CardActionArea,
+  CircularProgress,
   createStyles,
   IconButton,
   ListItemText,
   Theme,
   Typography,
-  withStyles,
-  CircularProgress
+  withStyles
 } from '@material-ui/core'
 import {connect} from 'umi'
 import request from 'umi-request';
 import cls from 'classnames'
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import {Dispatch} from "@/models/connect";
+import MoreButton from '@/components/Buttons/MoreButton'
+
 
 const styles = (theme: Theme) => createStyles({
   cardRoot: {
@@ -61,11 +62,7 @@ const styles = (theme: Theme) => createStyles({
   playIcon: {
     color: '#7f7f7f',
   },
-  loadingMore: {
-    padding: 12,
-    backgroundColor: '#121212',
-    color: '#8b8b8b'
-  },
+
   loading:{
     width:'100%',
     textAlign:'center',
@@ -137,7 +134,7 @@ class CardItem extends React.PureComponent<Props, State> {
         if (response && response.code === 200) {
           const {playlist: {tracks}} = response;
           const d = formatData(tracks)
-          const topFive = d.splice(0, 6)
+          const topFive = d.splice(0, 7)
           this.setState({topFive, loading: false})
         }
 
@@ -186,13 +183,8 @@ class CardItem extends React.PureComponent<Props, State> {
           )
         }
 
-        <CardActionArea onClick={this.handleMoreClick}>
-          <div className={classes.loadingMore}>
-            <Typography variant="body2" align="center">
-              更多
-            </Typography>
-          </div>
-        </CardActionArea>
+        <MoreButton onClick={this.handleMoreClick}/>
+
       </Card>
     );
   };
