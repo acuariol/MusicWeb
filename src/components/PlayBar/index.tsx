@@ -20,7 +20,7 @@ const styles = () => createStyles({
     position: 'fixed',
     top: 0,
     left:0,
-    zIndex: 1600,
+    zIndex: 1000,
     display: 'flex',
     justifyContent: 'flex-end',
     color: '#fff',

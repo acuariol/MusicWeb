@@ -36,17 +36,17 @@ const transitionStyles = {
   entering: {
     opacity: 1,
     transform: 'scale(1)',
-    zIndex: 1500
+    zIndex: 900
   },
   entered: {
     opacity: 1,
     transform: 'scale(1)',
-    zIndex: 1500
+    zIndex: 900
   },
   exiting: {
     opacity: 0,
     transform: 'scale(0)',
-    zIndex: 1500
+    zIndex: 900
   },
   exited: {
     opacity: 0,

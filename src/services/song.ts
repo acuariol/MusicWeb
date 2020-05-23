@@ -148,5 +148,10 @@ export async function lyric(id:number): Promise<any> {
   return request(`http://106.12.40.19:3000/lyric?id=${id}` );
 }
 
+export async function simiSong(id:number): Promise<any> {
+  return request(`http://106.12.40.19:3000/simi/song?id=${id}` );
+}
+
+
 
 

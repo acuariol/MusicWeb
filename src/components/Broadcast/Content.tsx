@@ -110,8 +110,6 @@ class Content extends React.PureComponent<Props, State> {
 
     return (
       <div className={cls(classes.root,)}>
-
-
         <Container>
 
           <div className={classes.box}>
@@ -175,7 +173,6 @@ class Content extends React.PureComponent<Props, State> {
               </Grid>
 
             </Grid>
-
 
           </div>
         </Container>

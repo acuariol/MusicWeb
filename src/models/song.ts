@@ -1,5 +1,15 @@
 import {Subscription, Reducer, Effect} from 'umi';
-import {banner, topSong, search, topList, topArtists, searchSuggest, musicComment, lyric} from '@/services/song';
+import {
+  banner,
+  topSong,
+  search,
+  topList,
+  topArtists,
+  searchSuggest,
+  musicComment,
+  lyric,
+  simiSong
+} from '@/services/song';
 import {formatMilliSeconds, formatTime, formatNumToTenThousand} from '@/utils/utils'
 import {isEmpty} from 'lodash'
 
@@ -234,6 +244,11 @@ export interface SongModelState {
     songId: null | number,
     lyr: string
   }
+
+  simiSong: {
+    songId: number | null,
+    list: any[]
+  }
 }
 
 export interface SongModelType {
@@ -248,6 +263,7 @@ export interface SongModelType {
     fetchSearchSuggest: Effect;
     fetchMusicComment: Effect;
     fetchLyric: Effect;
+    fetchSimiSong: Effect;
   };
   reducers: {
     setState: Reducer<SongModelState>;
@@ -260,7 +276,7 @@ const SongModel: SongModelType = {
   namespace: 'song',
   state: {
     banners: [{
-      imageUrl:'http://acuario.cn/assets/block@1080x400.png'
+      imageUrl: 'http://acuario.cn/assets/block@1080x400.png'
     }],
     topSong: loadingMock,
 
@@ -293,6 +309,11 @@ const SongModel: SongModelType = {
     lyric: {
       songId: null,
       lyr: ''
+    },
+
+    simiSong: {
+      songId: null,
+      list: []
     }
 
   },
@@ -398,6 +419,25 @@ const SongModel: SongModelType = {
               songId: payload.id,
               lyr: lrc ? (lrc.lyric || '') : ''
             },
+          },
+        });
+      }
+    },
+    * fetchSimiSong({payload}, {call, put}) {
+      const {code, songs} = yield call(simiSong, payload.id);
+
+      if (code === 200 && Array.isArray(songs)) {
+        yield put({
+          type: 'setState',
+          payload: {
+            simiSong: {
+              songId: payload.id,
+              list: songs.map((o: any) => ({
+                name: o.name,
+                id: o.id,
+                artists: o.artists.map((i: any) => i.name).join('/')
+              }))
+            }
           },
         });
       }

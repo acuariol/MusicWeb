@@ -63,10 +63,10 @@ const styles = (theme: Theme) => createStyles({
     color: '#7f7f7f',
   },
 
-  loading:{
-    width:'100%',
-    textAlign:'center',
-    padding:'64px 0'
+  loading: {
+    width: '100%',
+    textAlign: 'center',
+    padding: '64px 0'
   }
 })
 
@@ -98,10 +98,21 @@ function formatData(data: Array<DataItem>) {
   }))
 }
 
-function Item({classes, item, onClickPlay}: { classes: any, item: DataItem, onClickPlay: any }) {
+type ItemProps = {
+  classes: any,
+  item: DataItem,
+  onClickPlay: (item: DataItem) => void,
+
+}
+
+function Item({classes, item, onClickPlay,}: ItemProps) {
+
+
   return (
     <div className={classes.item}>
-      <IconButton onClick={() => onClickPlay(item)}>
+
+
+      <IconButton onClick={() => onClickPlay(item)}  >
         <PlayCircleOutlineIcon className={classes.playIcon} />
       </IconButton>
       <ListItemText className={classes.itemContent}>
@@ -157,7 +168,7 @@ class CardItem extends React.PureComponent<Props, State> {
 
   render() {
     const {classes, className, index, title,} = this.props;
-    const {topFive,loading} = this.state;
+    const {topFive, loading} = this.state;
 
     return (
       <Card square className={cls(className, classes.cardRoot)}>
@@ -170,7 +181,7 @@ class CardItem extends React.PureComponent<Props, State> {
           </Typography>
         </div>
         {
-          loading&&(
+          loading && (
             <div className={classes.loading}>
               <CircularProgress />
             </div>
@@ -179,11 +190,11 @@ class CardItem extends React.PureComponent<Props, State> {
 
         {
           topFive.map((o: DataItem) => (
-            <Item classes={classes} key={o.id} item={o} onClickPlay={this.handlePlay} />)
+            <Item key={o.id}classes={classes} item={o} onClickPlay={this.handlePlay} />)
           )
         }
 
-        <MoreButton onClick={this.handleMoreClick}/>
+        <MoreButton onClick={this.handleMoreClick} />
 
       </Card>
     );

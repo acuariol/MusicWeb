@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {Typography} from '@material-ui/core'
+import {Typography, Divider, Grid, Hidden} from '@material-ui/core'
 import {connect} from 'umi'
 import {ConnectState, Dispatch} from "@/models/connect";
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import SimilarSongs from './SimilarSongs'
 import CommentsCard from './Card'
 
 type Props = {
@@ -28,41 +28,66 @@ class Comments extends React.PureComponent<Props, State> {
 
     const {hotComments, comments, total, loading} = this.props;
 
-    if (loading) return <div style={styles}><CircularProgress /></div>
+
     return (
       <div style={{paddingTop: 64}}>
 
-        <Typography gutterBottom variant="h6" style={{padding: '0 0 14px'}}>
-          评论：{total}
-        </Typography>
+        <Grid container spacing={4}>
+          <Grid item md={8} lg={8} sm={12} xs={12} xl={8}>
 
-        {
-          hotComments.length !== 0 && (
-            <Typography variant="h6" gutterBottom style={{padding: '0 0 14px'}}>
-              精彩评论
-            </Typography>
-          )
-        }
+            <div style={{padding: '0 0 24px'}}>
+              <Typography gutterBottom variant="h6">
+                评论：{total}
+              </Typography>
+              <Divider />
+            </div>
 
-        {
-          hotComments.map((item: any, index) => (
-            <CommentsCard key={item.commentId} index={index} item={item} />
-          ))
-        }
+            {loading && <div style={styles}><CircularProgress /></div>}
 
-        {
-          comments.length !== 0 && (
-            <Typography variant="h6" gutterBottom style={{padding: '30px 0 14px'}}>
-              最新评论
-            </Typography>
-          )
-        }
+            <div hidden={loading}>
+              {
+                hotComments.length !== 0 && (
+                  <Typography variant="h6" gutterBottom style={{padding: '0 0 14px'}}>
+                    精彩评论
+                  </Typography>
+                )
+              }
 
-        {
-          comments.map((item: any, index) => (
-            <CommentsCard key={item.commentId} index={index} item={item} />
-          ))
-        }
+              {
+                hotComments.map((item: any, index) => (
+                  <CommentsCard key={item.commentId} index={index} item={item} />
+                ))
+              }
+
+              {
+                comments.length !== 0 && (
+                  <Typography variant="h6" gutterBottom style={{padding: '30px 0 14px'}}>
+                    最新评论
+                  </Typography>
+                )
+              }
+
+              {
+                comments.map((item: any, index) => (
+                  <CommentsCard key={item.commentId} index={index} item={item} />
+                ))
+              }
+
+
+            </div>
+
+
+
+          </Grid>
+
+          <Hidden mdDown>
+            <Grid item md={4} lg={4}>
+              <SimilarSongs />
+            </Grid>
+          </Hidden>
+
+        </Grid>
+
 
       </div>
     );

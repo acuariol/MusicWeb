@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       // transform: 'translateZ(0px)',
-      backgroundColor: 'rgba(255,0,0, 0.5)',
       [theme.breakpoints.down('sm')]: {
         display: 'none'
       }
@@ -25,6 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
         bottom: theme.spacing(4),
         right: theme.spacing(4),
       },
+      zIndex:800,
       // [theme.breakpoints.down('lg')]:{
       //   '&.MuiSpeedDial-directionUp, &.MuiSpeedDial-directionLeft': {
       //     right: theme.spacing(4),

@@ -43,7 +43,7 @@ const useStyles = makeStyles(() =>
   })
 )
 
-function Galileo({dispatch, loading, url, picUrl, show, commentSongId, playSongId, lyricSongId}: any) {
+function Galileo({dispatch, loading, url, picUrl, show, commentSongId, playSongId, lyricSongId,simiSongIs}: any) {
 
   const classes = useStyles()
   const handleClick = () => {
@@ -67,6 +67,17 @@ function Galileo({dispatch, loading, url, picUrl, show, commentSongId, playSongI
         }
       })
     }
+
+    // 获取相似歌曲
+    if ((playSongId !== lyricSongId) && !show) {
+      dispatch({
+        type: 'song/fetchSimiSong',
+        payload: {
+          id: playSongId
+        }
+      })
+    }
+
 
     dispatch({
       type: 'global/setState',
@@ -100,7 +111,9 @@ const mapStateToProps = ({play, loading, global, song}: ConnectState) => ({
   show: global.showGalileo,
   commentSongId: song.commentData.songId,
   lyricSongId: song.lyric.songId,
-  playSongId: play.songId
+  playSongId: play.songId,
+  simiSongIs: song.simiSong.songId
+
 })
 
 export default connect(mapStateToProps)(Galileo)
