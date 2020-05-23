@@ -19,7 +19,7 @@ const styles = () => createStyles({
     backgroundColor: '#252525',
     position: 'fixed',
     top: 0,
-    left:0,
+    left: 0,
     zIndex: 1000,
     display: 'flex',
     justifyContent: 'flex-end',
@@ -65,6 +65,12 @@ class PlayBar extends Component<PlayBarProps, State> {
       dispatch({
         type: 'global/setState',
         payload: {showGalileo: false}
+      })
+
+      window.scrollTo({
+        left: 0,
+        top: 0,
+        behavior: 'smooth',
       })
     }
   }
