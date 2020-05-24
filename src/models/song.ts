@@ -98,13 +98,12 @@ function formatTopSongs(songs: []): Array<TopSongItemProps> {
 
 function formatSongs(songs: []): Array<SongsItemProps> {
   return songs.map((item: any) => {
-    const artists = item.artists.map((o: any) => o.name)
     return {
       id: item.id,
       name: item.name,
       playTime: formatMilliSeconds(item.duration),
       duration: item.duration,
-      artists,
+      artists:item.artists,
       album: item.album.name
     }
   })

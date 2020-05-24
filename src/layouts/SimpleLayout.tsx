@@ -33,10 +33,9 @@ const SimpleLayout = ({children}: SimpleLayoutProps) => {
         <div className={classes.content}>
           <Container>
             {children}
-            <SpeedDials />
           </Container>
         </div>
-
+        <SpeedDials />
         <Footer />
       </ThemeProvider>
     </>

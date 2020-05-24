@@ -6,8 +6,8 @@ export async function checkMusic(id: number): Promise<any> {
 }
 
 // 歌曲详情
-export async function songDetail(id: number): Promise<any> {
-  return request(`http://106.12.40.19:3000/song/detail?ids=${id}`);
+export async function songDetail(ids: number | string): Promise<any> {
+  return request(`http://106.12.40.19:3000/song/detail?ids=${ids}`);
 }
 
 // banner
@@ -137,20 +137,25 @@ export async function searchSuggest(keywords = ''): Promise<any> {
 // 可选参数 : limit: 取出评论数量 , 默认为 20
 // offset: 偏移数量 , 用于分页 , 如 :( 评论页数 -1)*20, 其中 20 为 limit 的值
 // before: 分页参数,取上一页最后一项的 time 获取下一页数据(获取超过5000条评论的时候需要用到)
-export async function musicComment(payload:any): Promise<any> {
+export async function musicComment(payload: any): Promise<any> {
   return request(`http://106.12.40.19:3000/comment/music`, {
     method: 'GET',
     params: payload
   });
 }
 
-export async function lyric(id:number): Promise<any> {
-  return request(`http://106.12.40.19:3000/lyric?id=${id}` );
+export async function lyric(id: number): Promise<any> {
+  return request(`http://106.12.40.19:3000/lyric?id=${id}`);
 }
 
-export async function simiSong(id:number): Promise<any> {
-  return request(`http://106.12.40.19:3000/simi/song?id=${id}` );
+export async function simiSong(id: number): Promise<any> {
+  return request(`http://106.12.40.19:3000/simi/song?id=${id}`);
 }
+
+export async function playlistDetail(id: number | string): Promise<any> {
+  return request(`http://106.12.40.19:3000/playlist/detail?id=${id}`);
+}
+
 
 
 

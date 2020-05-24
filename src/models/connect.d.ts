@@ -1,13 +1,21 @@
-import {MenuDataItem} from '@ant-design/pro-layout';
 import {GlobalModelState} from './global';
 import {DefaultSettings as SettingModelState} from '../../config/defaultSettings';
 import {UserModelState} from './user';
 import {SongModelState} from './song';
 import {PlayModelState} from './play';
 import {MvModelState} from './mv';
+import {PlaylistModelState} from './playlist';
 
 
-export {GlobalModelState, SettingModelState, UserModelState, SongModelState, PlayModelState,MvModelState};
+export {
+  GlobalModelState,
+  SettingModelState,
+  UserModelState,
+  SongModelState,
+  PlayModelState,
+  MvModelState,
+  PlaylistModelState
+};
 
 
 export interface Dispatch {
@@ -32,15 +40,15 @@ export interface ConnectState {
   loading: Loading;
   settings: SettingModelState;
   user: UserModelState;
-  login: StateType;
   song: SongModelState,
   play: PlayModelState,
-  mv:MvModelState
+  mv: MvModelState,
+  playlist: PlaylistModelState
 }
 
-export interface Route extends MenuDataItem {
-  routes?: Route[];
-}
+// export interface Route extends MenuDataItem {
+//   routes?: Route[];
+// }
 
 
 

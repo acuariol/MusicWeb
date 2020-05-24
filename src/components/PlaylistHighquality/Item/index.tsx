@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     alignItems: 'stretch',
     flex: 1,
     height: '100%',
-    paddingLeft:theme.spacing(1.5)
+    paddingLeft: theme.spacing(1.5)
   },
   root: {
     display: 'flex',
@@ -72,16 +72,16 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 
 type ItemProps = {
   item: any,
-
+  onClick?: (item: any) => any
 }
 
-function Item({item,}: ItemProps) {
+function Item({item, onClick}: ItemProps) {
 
   const classes = useStyles()
 
-  const onMouseEnter = (o: any) => {
-
-
+  const handleClick = (o: any) => {
+    if (typeof onClick === 'function')
+      onClick(o)
   }
 
   return (
@@ -90,7 +90,7 @@ function Item({item,}: ItemProps) {
         alignItems="flex-start"
         button
         className={cls(classes.root)}
-        onClick={() => onMouseEnter(item)}
+        onClick={() => handleClick(item)}
       >
         <Avatar src={item.coverImgUrl} />
 

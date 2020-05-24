@@ -68,17 +68,17 @@ class PlaylistHighquality extends React.PureComponent<Props, State> {
       });
   }
 
-  onClick = (item: any) => {
-    const {searchWord} = item;
+
+
+  handleClick = (item:any)=>{
+    history.push(`/playlist?id=${item.id}`)
     window.scrollTo({
       left: 0,
       top: 0,
       behavior: 'smooth',
     })
-    history.push(`/search?keywords=${searchWord}&type=1`)
 
   }
-
 
   render() {
 
@@ -105,6 +105,7 @@ class PlaylistHighquality extends React.PureComponent<Props, State> {
           {
             list.map((item: any) => (
               <Item
+                onClick={this.handleClick}
                 key={item.id}
                 item={item}
               />
