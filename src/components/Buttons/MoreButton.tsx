@@ -1,5 +1,6 @@
 import React from 'react'
 import {CardActionArea, createStyles, makeStyles, Typography} from "@material-ui/core";
+import FormattedMessage from '@/components/FormattedMessage'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -23,7 +24,7 @@ function MoreButton({onClick, hidden, title}: Props) {
     <CardActionArea onClick={onClick} hidden={hidden}>
       <div className={classes.loadingMore}>
         <Typography variant="body2" align="center">
-          {title || '更多'}
+          {title || <FormattedMessage id="component.more"/>}
         </Typography>
       </div>
     </CardActionArea>

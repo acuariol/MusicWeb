@@ -14,7 +14,7 @@ import {connect} from 'umi'
 import {Dispatch, ConnectState} from "@/models/connect";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
+import FormattedMessage from '@/components/FormattedMessage'
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -106,7 +106,7 @@ class SimilarSongs extends React.PureComponent<Props, State> {
       <div className={classes.root}>
         <div style={{padding: '0 0 24px'}}>
           <Typography gutterBottom variant="h6">
-            相似歌曲
+            <FormattedMessage id="comment.similarity"/>
           </Typography>
           <Divider />
         </div>

@@ -1,5 +1,5 @@
 export default {
-  'component.tagSelect.expand': '展开',
-  'component.tagSelect.collapse': '收起',
-  'component.tagSelect.all': '全部',
+  'component.more': '更多',
+  'component.search': '搜索',
+  'component.searchHelp': '键入Enter键搜索',
 };

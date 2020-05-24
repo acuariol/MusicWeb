@@ -12,6 +12,7 @@ import Discover from "@/components/Discover";
 import FeatureRanking from "@/components/FeatureRanking";
 import HotSearch from '@/components/HotSearch'
 import PlaylistHighquality from '@/components/PlaylistHighquality'
+import FormattedMessage from '@/components/FormattedMessage'
 import styles from './styles.less'
 
 interface HomeProps {
@@ -57,7 +58,7 @@ class Home extends Component<HomeProps, State> {
               <TrendingCarousel banners={banners} />
               <div style={{paddingTop: '45%'}}>
                 <CollectionTitle
-                  title="新歌速览"
+                  title={<FormattedMessage id="layout.newReleases" />}
                   allowClickMore
                   onMoreClick={() => this.openUrl('https://music.163.com/#/discover/album/')}
                 />
@@ -65,14 +66,14 @@ class Home extends Component<HomeProps, State> {
 
                 <CollectionTitle
                   style={{paddingTop: 64}}
-                  title="发现"
+                  title={<FormattedMessage id="layout.discover" />}
                 />
 
                 <Discover />
 
                 <CollectionTitle
                   style={{paddingTop: 64}}
-                  title="特色榜单"
+                  title={<FormattedMessage id="layout.featuredPlaylist" />}
                 />
                 <FeatureRanking />
               </div>

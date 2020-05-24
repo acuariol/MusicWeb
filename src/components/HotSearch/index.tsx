@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {Card, Chip, CircularProgress, createStyles, Theme, Typography, withStyles} from '@material-ui/core'
+import FormattedMessage from '@/components/FormattedMessage'
 
 import request from "umi-request";
 import {history} from "umi";
@@ -90,7 +91,7 @@ class HotSearch extends React.PureComponent<Props, State> {
     return (
       <Card className={classes.root} square>
         <Typography variant="h5" color="inherit" className={classes.title}>
-          热搜榜单
+          <FormattedMessage id="layout.hotSearch"/>
         </Typography>
 
         {

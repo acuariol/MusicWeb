@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     color: theme.palette.primary.main
   },
   p2: {
-    width: 200,
+    width: 240,
     padding: '0 14px'
   },
   p3: {

@@ -3,7 +3,7 @@ import {Card, CircularProgress, createStyles, Typography, withStyles} from '@mat
 
 import request from "umi-request";
 import {history} from "umi";
-
+import FormattedMessage from '@/components/FormattedMessage'
 import MoreButton from '@/components/Buttons/MoreButton'
 import Item from './Item'
 
@@ -89,7 +89,7 @@ class PlaylistHighquality extends React.PureComponent<Props, State> {
     return (
       <Card classes={{root: classes.root}} square>
         <Typography variant="h5" color="inherit" className={classes.title}>
-          精品歌单
+          <FormattedMessage id="layout.boutiqueSong"/>
         </Typography>
 
 

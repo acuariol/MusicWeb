@@ -1,8 +1,11 @@
 import React, {PureComponent} from 'react'
 import {Container, createStyles, Grid, Link, Theme, Typography, withStyles} from '@material-ui/core'
-import {connect} from 'umi'
+import {connect,} from 'umi'
+
 import {ConnectState, Dispatch} from "@/models/connect";
 import CopyrightIcon from '@material-ui/icons/Copyright';
+
+import FormattedMessage from '@/components/FormattedMessage'
 
 const styles = (theme: Theme) => createStyles({
   footerContainer: {
@@ -70,13 +73,17 @@ const social = [
   }
 ]
 
+
+
 class Foo extends PureComponent<FooterProps> {
   componentDidMount() {
     this.props.dispatch({
       type: 'song/fetchTopArtists',
       payload: {limit: 10}
     })
+
   }
+
 
   render() {
     const {classes, topArtists} = this.props
@@ -87,7 +94,8 @@ class Foo extends PureComponent<FooterProps> {
             <Grid container spacing={8}>
               <Grid item md={3} lg={3} xl={3}>
                 <Typography className={classes.title} variant="h6">
-                  热门歌手
+                  <FormattedMessage id="layout.footer.topSingers" />
+
                 </Typography>
                 {
                   (topArtists || []).map(o => (
@@ -100,7 +108,7 @@ class Foo extends PureComponent<FooterProps> {
 
               <Grid item md={3} lg={3} xl={3}>
                 <Typography className={classes.title} variant="h6">
-                  语言
+                  <FormattedMessage id="layout.footer.language" />
                 </Typography>
 
                 <Typography variant="body1" className={classes.text}>
@@ -115,7 +123,7 @@ class Foo extends PureComponent<FooterProps> {
 
               <Grid item md={3} lg={3} xl={3}>
                 <Typography className={classes.title} variant="h6">
-                  关注我们
+                  <FormattedMessage id="layout.footer.followUs" />
                 </Typography>
                 {
                   social.map((item: any) => (
@@ -128,7 +136,7 @@ class Foo extends PureComponent<FooterProps> {
 
               <Grid item md={3} lg={3} xl={3}>
                 <Typography className={classes.title} variant="h6">
-                  灵感来自
+                  <FormattedMessage id="layout.footer.inspiration" />
                 </Typography>
 
                 <Link

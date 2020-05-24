@@ -3,6 +3,7 @@ import {Typography, Divider, Grid, Hidden} from '@material-ui/core'
 import {connect} from 'umi'
 import {ConnectState, Dispatch} from "@/models/connect";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import FormattedMessage from '@/components/FormattedMessage'
 import SimilarSongs from './SimilarSongs'
 import CommentsCard from './Card'
 
@@ -37,7 +38,7 @@ class Comments extends React.PureComponent<Props, State> {
 
             <div style={{padding: '0 0 24px'}}>
               <Typography gutterBottom variant="h6">
-                评论：{total}
+                <FormattedMessage id="comment.number"/>：{total}
               </Typography>
               <Divider />
             </div>
@@ -48,7 +49,7 @@ class Comments extends React.PureComponent<Props, State> {
               {
                 hotComments.length !== 0 && (
                   <Typography variant="h6" gutterBottom style={{padding: '0 0 14px'}}>
-                    精彩评论
+                    <FormattedMessage id="comment.wonderful"/>
                   </Typography>
                 )
               }
@@ -62,7 +63,7 @@ class Comments extends React.PureComponent<Props, State> {
               {
                 comments.length !== 0 && (
                   <Typography variant="h6" gutterBottom style={{padding: '30px 0 14px'}}>
-                    最新评论
+                    <FormattedMessage id="comment.new"/>
                   </Typography>
                 )
               }

@@ -9,6 +9,11 @@ export default [
         component: './Home',
       },
       {
+        path: '/playlist',
+        name: 'playlist',
+        component: './Playlist',
+      },
+      {
         path: '/about',
         name: 'about',
         component: './About',

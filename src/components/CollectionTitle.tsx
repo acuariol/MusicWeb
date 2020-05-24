@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {createStyles, makeStyles, Theme, Button} from '@material-ui/core';
+import FormattedMessage from '@/components/FormattedMessage'
 import Line from './Line'
 import {NormalNotice} from './Notice'
 
@@ -38,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 }))
 
 interface CollectionTitleProps {
-  title: string,
+  title: string|React.ReactElement,
   allowClickMore?: boolean,
   onMoreClick?: () => void,
   style?: any
@@ -65,7 +66,10 @@ export default (props: CollectionTitleProps) => {
             <h1 className={classes.title}>{props.title}</h1>
             <span className={classes.new}>NEW</span>
           </div>
-          <Button className={classes.more} onClick={handleMoreClick}>{props.moreText || '更多'}</Button>
+          <Button className={classes.more} onClick={handleMoreClick}>
+            {props.moreText ||<FormattedMessage id="component.more"/> }
+
+          </Button>
         </div>
       </div>
     </div>

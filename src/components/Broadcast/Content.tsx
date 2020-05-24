@@ -9,6 +9,7 @@ import ShareIcon from '@material-ui/icons/Share';
 
 import CreateNewFolderOutlinedIcon from '@material-ui/icons/CreateNewFolderOutlined';
 import Comments from "@/components/Comments";
+import FormattedMessage from "@/components/FormattedMessage";
 import Lyric from './Lyric'
 
 const styles = (theme: Theme) => createStyles({
@@ -127,19 +128,19 @@ class Content extends React.PureComponent<Props, State> {
                     <div className={classes.coverActionContent}>
 
                       <Button startIcon={<FavoriteBorderIcon />} className={classes.btn}>
-                        喜欢
+                        <FormattedMessage id="comment.like"/>
                       </Button>
 
                       <Button startIcon={<GetAppIcon />} className={classes.btn}>
-                        下载
+                        <FormattedMessage id="comment.download"/>
                       </Button>
 
                       <Button startIcon={<ShareIcon />} className={classes.btn}>
-                        分享
+                        <FormattedMessage id="comment.share"/>
                       </Button>
 
                       <Button startIcon={<CreateNewFolderOutlinedIcon />} className={classes.btn}>
-                        收藏
+                        <FormattedMessage id="comment.favorites"/>
                       </Button>
                     </div>
                   </div>
@@ -154,11 +155,11 @@ class Content extends React.PureComponent<Props, State> {
 
                 <div className={classes.subtitle}>
                   <Typography>
-                    专辑： <span className={classes.textPrimary}>{detail.al.name}</span>
+                    <FormattedMessage id="comment.album"/>： <span className={classes.textPrimary}>{detail.al.name}</span>
                   </Typography>
 
                   <Typography style={{paddingLeft: 24}}>
-                    歌手：
+                    <FormattedMessage id="comment.singer"/>：
                     {detail.ar.map((o: any, index: number) => <span key={o.id} className={classes.textPrimary}>
                       {o.name}{detail.ar.length === index + 1 ? '' : '/'}
                     </span>)}
