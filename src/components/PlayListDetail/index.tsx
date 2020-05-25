@@ -8,18 +8,20 @@ import {
   Typography,
   Avatar,
   Card,
-  Chip
+  Chip,
 } from "@material-ui/core";
 import {PlaylistInfo} from '@/models/playlist'
+import MaskLoading from '@/components/Loading/MaskLoading'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '100%',
       display: 'flex',
+      height: 300,
+      position: 'relative'
     },
     cover: {
-
       width: 300,
       height: 300,
     },
@@ -57,6 +59,8 @@ function PlayListDetail(props: PlaylistInfo) {
   const classes = useStyles()
   return (
     <Card square className={classes.root}>
+      {props.loading&&<MaskLoading/>}
+
       {
         props.coverImgUrl && (
           <CardMedia
@@ -84,7 +88,7 @@ function PlayListDetail(props: PlaylistInfo) {
         </div>
 
         <div>
-          <div className={classes.tag}>
+          <div className={classes.tag} hidden={props.tags.length === 0}>
             <Typography display="inline">标签：</Typography>
             {
               props.tags.map((o: string) => (
@@ -92,8 +96,8 @@ function PlayListDetail(props: PlaylistInfo) {
               ))
             }
           </div>
-          <Typography>
-            {props.description}
+          <Typography hidden={!props.description}>
+            介绍：{props.description}
           </Typography>
         </div>
       </CardContent>

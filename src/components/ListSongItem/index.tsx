@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import AddIcon from "@material-ui/icons/Add";
+import VolumeUpRoundedIcon from '@material-ui/icons/VolumeUpRounded';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   action: {
@@ -66,13 +67,14 @@ type DataItem = {
 }
 
 interface ListSongItemProps {
-  item: DataItem,
+  item: DataItem
   onPlayClick: (o: any) => void
+  isItem?: boolean
 }
 
 
 function ListSongItem(props: ListSongItemProps) {
-  const {item, onPlayClick} = props;
+  const {item, onPlayClick, isItem} = props;
   const classes = useStyles();
 
   const handlePlay = (o: DataItem) => {
@@ -82,11 +84,20 @@ function ListSongItem(props: ListSongItemProps) {
   return (
     <ListItem className={classes.listItem}>
       <ListItemIcon>
+        {
+          isItem && (
+            <div style={{padding:12}}>
+              <VolumeUpRoundedIcon color="primary" />
+            </div>
+          )
+        }
+
         <Tooltip title="播放" placement="left">
-          <IconButton onClick={() => handlePlay(item)}>
+          <IconButton onClick={() => handlePlay(item)} hidden={isItem}>
             <PlayCircleOutlineIcon className={classes.icon} />
           </IconButton>
         </Tooltip>
+
       </ListItemIcon>
       <ListItemText>
         <Typography variant="body1" noWrap>{item.name}</Typography>

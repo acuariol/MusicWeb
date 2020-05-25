@@ -5,6 +5,7 @@ import {SongsItemProps} from "@/models/song";
 import {ConnectState, Dispatch} from "@/models/connect";
 
 import ListSongItem from '@/components/ListSongItem'
+import CheckPlaying from "@/components/CheckPlaying";
 
 interface SinglesProps {
   dispatch: (pares: Dispatch) => void,
@@ -18,7 +19,7 @@ function Singles(props: SinglesProps) {
   const handlePlay = (item: SongsItemProps) => {
     dispatch({
       type: 'play/fetchSongUrl',
-      payload: {id: item.id, playTime: item.duration}
+      payload: {id: item.id}
     })
 
   };
@@ -26,8 +27,14 @@ function Singles(props: SinglesProps) {
     <>
       <List component="div">
         {
-          songs.map((o: any) => (
-            <ListSongItem key={o.id} onPlayClick={handlePlay} item={o}/>
+          songs.map((item: any) => (
+            <CheckPlaying currentSongId={item.id} key={item.id}>
+              {
+                (state: boolean) => <ListSongItem
+                  isItem={state}  item={item} onPlayClick={handlePlay}
+                />
+              }
+            </CheckPlaying>
           ))
         }
       </List>

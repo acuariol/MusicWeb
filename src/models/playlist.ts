@@ -1,5 +1,6 @@
 import {Subscription, Reducer, Effect} from 'umi';
 import {playlistDetail, songDetail} from '@/services/song';
+import {formatTime} from '@/utils/utils'
 
 export interface PlaylistModelType {
   namespace: 'playlist';
@@ -28,6 +29,8 @@ export type PlaylistInfo = {
   subscribedCount: number | string
   commentCount: number | string
   shareCount: number | string
+
+  [propsName: string]: any
 }
 
 
@@ -44,14 +47,14 @@ const PlaylistModel: PlaylistModelType = {
   state: {
     playlistInfo: {
       createTime: '',
-      name: '',
+      name: 'Beatz',
       description: '',
       tags: [],
       playCount: 0,
-      coverImgUrl: '',
+      coverImgUrl: 'http://acuario.cn/assets/block.png',
       creator: {
         avatarUrl: '',
-        nickname: '',
+        nickname: 'Beatz',
       },
       subscribedCount: 0,
       commentCount: 0,
@@ -69,11 +72,11 @@ const PlaylistModel: PlaylistModelType = {
           type: 'setState',
           payload: {
             playlistInfo: {
-              createTime: playlist.createTime,
+              createTime: formatTime(playlist.createTime),
               name: playlist.name,
               description:
                 playlist.description.length >= 160
-                  ? `${playlist.description.substr(0, 160) }...`:
+                  ? `${playlist.description.substr(0, 160)}...` :
                   playlist.description,
               tags: playlist.tags,
               playCount: playlist.playCount,

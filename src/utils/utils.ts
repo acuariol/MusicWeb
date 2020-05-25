@@ -25,7 +25,7 @@ export const formatMilliSeconds = (milliSeconds: any): string => {
   return `${formatNumber(minute)}:${formatNumber(second)}`;
 }
 
-export const formatTime = (timeStamp: number): string => {
+export const formatTime = (timeStamp: number, detail?: boolean): string => {
   const date = new Date();
   date.setTime(timeStamp);
   const year = date.getFullYear()
@@ -35,7 +35,9 @@ export const formatTime = (timeStamp: number): string => {
   const minute = date.getMinutes()
   const second = date.getSeconds()
 
-  return `${[year, month, day].map(formatNumber).join('-')} ${[hour, minute, second].map(formatNumber).join(':')}`
+  const s = detail ? [hour, minute, second].map(formatNumber).join(':') : ''
+
+  return `${[year, month, day].map(formatNumber).join('-')} ${s}`
 }
 
 export const getPageQuery = () => parse(window.location.href.split('?')[1]);
