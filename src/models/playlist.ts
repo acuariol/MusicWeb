@@ -17,6 +17,7 @@ export interface PlaylistModelType {
 
 export type PlaylistInfo = {
   createTime: number | string
+  updateTime: number | string
   name: string
   description: string
   tags: string[]
@@ -47,6 +48,7 @@ const PlaylistModel: PlaylistModelType = {
   state: {
     playlistInfo: {
       createTime: '',
+      updateTime: '',
       name: 'Beatz',
       description: '',
       tags: [],
@@ -73,6 +75,7 @@ const PlaylistModel: PlaylistModelType = {
           payload: {
             playlistInfo: {
               createTime: formatTime(playlist.createTime),
+              updateTime: formatTime(playlist.updateTime),
               name: playlist.name,
               description:
                 playlist.description.length >= 160

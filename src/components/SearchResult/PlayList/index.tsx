@@ -17,6 +17,7 @@ import {PlayListItemProps} from "@/models/song";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import AddIcon from "@material-ui/icons/Add";
 import {ConnectState, Dispatch} from "@/models/connect";
+import {history} from "@@/core/history";
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   action: {
@@ -89,20 +90,29 @@ function PlayList(props: PlayListProps) {
 
   };
 
+  const onClick = (item: PlayListItemProps) => {
+    history.push(`/playlist?id=${item.id}`)
+    window.scrollTo({
+      left: 0,
+      top: 0,
+      behavior: 'smooth',
+    })
+  }
+
 
   return (
     <>
       <List component="div">
         {
           playList.map((o: PlayListItemProps) => (
-            <ListItem className={classes.listItem} key={o.id}>
-              <ListItemIcon>
-                <Tooltip title="播放" placement="left">
-                  <IconButton onClick={() => handlePlay(o)}>
-                    <PlayCircleOutlineIcon className={classes.icon} />
-                  </IconButton>
-                </Tooltip>
-              </ListItemIcon>
+            <ListItem className={classes.listItem} key={o.id} button onClick={()=>onClick(o)}>
+              {/*<ListItemIcon>*/}
+              {/*  <Tooltip title="播放" placement="left">*/}
+              {/*    <IconButton onClick={() => handlePlay(o)}>*/}
+              {/*      <PlayCircleOutlineIcon className={classes.icon} />*/}
+              {/*    </IconButton>*/}
+              {/*  </Tooltip>*/}
+              {/*</ListItemIcon>*/}
 
               <CardMedia
                 image={o.coverImgUrl}
@@ -113,11 +123,11 @@ function PlayList(props: PlayListProps) {
                 <Typography variant="body1" noWrap>{o.name}</Typography>
               </ListItemText>
               <div className={classes.action}>
-                <Tooltip title="添加到播放列表">
-                  <IconButton color="inherit" className={classes.hs}>
-                    <AddIcon color="inherit" />
-                  </IconButton>
-                </Tooltip>
+                {/*<Tooltip title="添加到播放列表">*/}
+                {/*  <IconButton color="inherit" className={classes.hs}>*/}
+                {/*    <AddIcon color="inherit" />*/}
+                {/*  </IconButton>*/}
+                {/*</Tooltip>*/}
 
                 <Typography variant="body1" className={classes.p1} noWrap>{o.trackCount}首</Typography>
                 <Typography variant="body1" className={classes.p3} noWrap>by {o.nickname}</Typography>

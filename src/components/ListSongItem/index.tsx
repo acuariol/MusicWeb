@@ -86,9 +86,11 @@ function ListSongItem(props: ListSongItemProps) {
       <ListItemIcon>
         {
           isItem && (
-            <div style={{padding:12}}>
-              <VolumeUpRoundedIcon color="primary" />
-            </div>
+            <Tooltip title="正在播放" placement="left">
+              <div style={{padding: 12}}>
+                <VolumeUpRoundedIcon color="primary" />
+              </div>
+            </Tooltip>
           )
         }
 

@@ -82,8 +82,12 @@ function PlayListDetail(props: PlaylistInfo) {
               {props.creator.nickname}
             </Typography>
             <Typography variant="body2" color="textSecondary" className={classes.paddingRight1}>
-              {props.createTime}
+              创建于：{props.createTime}
             </Typography>
+            <Typography variant="body2" color="textSecondary" className={classes.paddingRight1}>
+              更新于：{props.updateTime}
+            </Typography>
+
           </div>
         </div>
 

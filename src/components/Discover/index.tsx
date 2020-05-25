@@ -1,6 +1,6 @@
 import React from 'react';
 import {Card, CardActionArea, CardMedia, Typography} from '@material-ui/core'
-import {connect} from 'umi'
+import {connect,history} from 'umi'
 import {InView} from 'react-intersection-observer'
 
 import {TopListItemProps} from '@/models/song'
@@ -19,8 +19,18 @@ type State = {
 };
 
 function ItemCard({item}: { item: TopListItemProps }) {
+
+  const onClick = (id:number)=>{
+    history.push(`/playlist?id=${id}`)
+    window.scrollTo({
+      left: 0,
+      top: 0,
+      behavior: 'smooth',
+    })
+  }
+
   return (
-    <Card elevation={0} className={styles.item}>
+    <Card elevation={0} className={styles.item} onClick={()=>onClick(item.id)}>
       <CardActionArea>
         <CardMedia image={item.coverImgUrl || item.picUrl} className={styles.media} />
       </CardActionArea>

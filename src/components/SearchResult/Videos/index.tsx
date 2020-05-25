@@ -24,10 +24,11 @@ function Videos(props: VideosProps) {
   // const classes = useStyles()
 
   const onClick = (item: VideoItemProps) => {
-    console.log(item)
+    window.open(`https://music.163.com/#/video?id=${item.vid}`,'_block')
+
   }
 
-  console.log(videos)
+
   return (
     <>
       {videos.length === 0 && (<NoData />)}

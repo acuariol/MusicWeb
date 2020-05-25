@@ -13,7 +13,7 @@ const useStyles = makeStyles(() =>
 )
 
 type Props = {
-  onClick?: () => void,
+  onClick?: (arg?:any) => void,
   hidden?: boolean,
   title?: any
 }

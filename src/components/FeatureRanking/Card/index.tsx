@@ -15,6 +15,7 @@ import cls from 'classnames'
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import {Dispatch} from "@/models/connect";
 import MoreButton from '@/components/Buttons/MoreButton'
+import {history} from "@@/core/history";
 
 
 const styles = (theme: Theme) => createStyles({
@@ -85,8 +86,9 @@ type DataItem = {
 }
 
 type State = {
-  topFive: Array<DataItem>,
+  topFive: Array<DataItem>
   loading?: boolean
+  id: null | number
 };
 
 function formatData(data: Array<DataItem>) {
@@ -112,7 +114,7 @@ function Item({classes, item, onClickPlay,}: ItemProps) {
     <div className={classes.item}>
 
 
-      <IconButton onClick={() => onClickPlay(item)}  >
+      <IconButton onClick={() => onClickPlay(item)}>
         <PlayCircleOutlineIcon className={classes.playIcon} />
       </IconButton>
       <ListItemText className={classes.itemContent}>
@@ -133,20 +135,20 @@ function Item({classes, item, onClickPlay,}: ItemProps) {
 class CardItem extends React.PureComponent<Props, State> {
 
   state = {
-
     topFive: [],
-    loading: true
-
+    loading: true,
+    id: null
   }
 
   componentDidMount() {
     request.get(`http://106.12.40.19:3000/top/list?idx=${this.props.index}`)
       .then((response) => {
         if (response && response.code === 200) {
-          const {playlist: {tracks}} = response;
+
+          const {playlist: {tracks, id}} = response;
           const d = formatData(tracks)
           const topFive = d.splice(0, 7)
-          this.setState({topFive, loading: false})
+          this.setState({topFive, loading: false, id})
         }
 
       })
@@ -156,6 +158,12 @@ class CardItem extends React.PureComponent<Props, State> {
   }
 
   handleMoreClick = () => {
+    history.push(`/playlist?id=${this.state.id}`)
+    window.scrollTo({
+      left: 0,
+      top: 0,
+      behavior: 'smooth',
+    })
 
   }
 
@@ -190,7 +198,7 @@ class CardItem extends React.PureComponent<Props, State> {
 
         {
           topFive.map((o: DataItem) => (
-            <Item key={o.id}classes={classes} item={o} onClickPlay={this.handlePlay} />)
+            <Item key={o.id} classes={classes} item={o} onClickPlay={this.handlePlay} />)
           )
         }
 
@@ -198,7 +206,8 @@ class CardItem extends React.PureComponent<Props, State> {
 
       </Card>
     );
-  };
+  }
+  ;
 }
 
 export default withStyles(styles)(CardItem)
