@@ -61,13 +61,14 @@ class Playlist extends React.Component<Props, State> {
         <PlayListDetail {...playlistInfo} loading={detailLoading} />
 
         <Paper style={{padding: '2rem', marginTop: '4rem', minHeight: 300, position: 'relative'}}>
-          {loading && <MaskLoading />}
+          {(loading||detailLoading) && <MaskLoading />}
           <List component="div" disablePadding hidden={playlist.length === 0}>
             {
-              playlist.map((item: any) => (
+              playlist.map((item: any, i:number) => (
                 <CheckPlaying currentSongId={item.id} key={item.id}>
                   {
                     (state: boolean) => <ListSongItem
+                      index={i+1}
                       isItem={state}  item={item} onPlayClick={this.handlePlay}
                     />
                   }

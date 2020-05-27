@@ -1,113 +1,59 @@
-import * as React from 'react';
-import {
-  withStyles,
-  createStyles,
-  Modal,
-  Container,
-  Typography,
-  Card,
-  Paper,
-  Zoom,
-  Fade,
-  Button
-} from "@material-ui/core";
-import {ConnectState, Dispatch} from "@/models/connect";
-import cls from 'classnames'
-
-import {connect} from 'umi'
-
-const styles = createStyles({
-  root: {
-    color: '#fff',
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-
-    backgroundColor: 'red',
-    overflowY: 'auto',
-    overflowX: 'hidden',
-
-  },
-  box: {},
-
-
-
-})
-
-
-type Props = {
-  classes: any,
-  open: boolean,
-  dispatch: (parse: Dispatch) => void
-};
-type State = {};
-
-
-class Broadcast extends React.Component<Props, State> {
-  componentDidMount() {
-  }
-
-  handleClose = () => {
-    const {dispatch} = this.props
-    dispatch({
-      type: 'global/setState',
-      payload: {showGalileo: false}
+  window.scrollTo({
+      left: 0,
+      top: 0,
+      behavior: 'smooth',
     })
-  }
-
-  render() {
-
-    const {classes, open} = this.props
-    return (
-
-      <Modal
-        disableAutoFocus
-        disableEnforceFocus
-        open={open}
-        onClose={this.handleClose}
-        hideBackdrop
-        tabIndex={-1}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-
-        <Zoom in={open} style={{transformOrigin: 'top right',}} mountOnEnter timeout={500}>
-          <div className={cls(classes.root, classes.d)}>
-            <Button onClick={this.handleClose}>关闭</Button>
-
-            <div className={classes.box}>
-
-              {/*<img*/}
-              {/*  className={classes.img} src="https://p2.music.126.net/UsSAd3Bdf77DjhCuTSEvUw==/109951163077613693.jpg"*/}
-              {/*  alt=""*/}
-              {/*/>*/}
-
-            </div>
 
 
-            <div style={{width: '100%', height: '300px', backgroundColor: 'pink', marginTop: 21}}></div>
-            <div style={{width: '100%', height: '300px', backgroundColor: 'pink', marginTop: 21}}></div>
-            <div style={{width: '100%', height: '300px', backgroundColor: 'pink', marginTop: 21}}></div>
-            <div style={{width: '100%', height: '300px', backgroundColor: 'pink', marginTop: 21}}></div>
-            <div style={{width: '100%', height: '300px', backgroundColor: 'pink', marginTop: 21}}></div>
-            <div style={{width: '100%', height: '300px', backgroundColor: 'pink', marginTop: 21}}></div>
+    import React,{useState} from 'react'
+    import { Transition } from 'react-transition-group';
 
+    const duration = 300;
+
+    const defaultStyle = {
+      transition: `opacity ${duration}ms ease-in-out`,
+      opacity: 0,
+    }
+
+    const transitionStyles = {
+      entering: { opacity: 1 },
+      entered:  { opacity: 1 },
+      exiting:  { opacity: 0 },
+      exited:  { opacity: 0 },
+    };
+
+    // @ts-ignore
+    const Fade = ({ in: inProp }) => (
+      <Transition in={inProp} timeout={duration} mountOnEnter>
+        {state => (
+          <div style={{
+            ...defaultStyle,
+            ...transitionStyles[state]
+          }}>
+
+            I &apos m a fade Transition!
           </div>
-        </Zoom>
-
-      </Modal>
-
-
+        )}
+      </Transition>
     );
-  };
-}
 
-const mapStateToProps = ({global}: ConnectState) => ({
-  open: global.showGalileo
-})
 
-const Bd = withStyles(styles)(Broadcast)
-export default connect(mapStateToProps)(Bd)
+    const About: React.FC = () => {
+
+      const [inProp, setInProp] = useState(false);
+      return (
+        <div>
+          <h1>About</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquet, purus vitae eleifend tristique, lorem magna volutpat orci, et vehicula erat erat nec elit. Aenean posuere nunc ac cursus facilisis. Aenean vel porta turpis, ut iaculis justo.</p>
+
+          <Fade in={inProp}/>
+
+          <button onClick={() => setInProp(!inProp)}>
+            Click to Enter
+          </button>
+        </div>
+      )
+    }
+
+    export default About
+

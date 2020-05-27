@@ -51,7 +51,7 @@ class PlayMv extends React.Component<Props, State> {
           )
         }
 
-        <List className={styles.mvListRoot} disablePadding>
+        <List className={styles.mvListRoot} disablePadding hidden={loading}>
           {
             topMv.map(item => (<Item currentId={hoverItem.id} key={item.id} item={item} dispatch={dispatch} />))
           }

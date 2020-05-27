@@ -52,7 +52,7 @@ const Lrc = ({
       if (current && currentIndex > 5) {
         current.scrollTo({
           left: 0,
-          top:top-280,
+          top:top-140,
           behavior: 'smooth',
         })
       }

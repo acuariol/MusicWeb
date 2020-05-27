@@ -1,6 +1,6 @@
 import {Subscription, Reducer, Effect} from 'umi';
 import {playlistDetail, songDetail} from '@/services/song';
-import {formatTime} from '@/utils/utils'
+import {formatTime,formatMilliSeconds} from '@/utils/utils'
 
 export interface PlaylistModelType {
   namespace: 'playlist';
@@ -118,8 +118,8 @@ const PlaylistModel: PlaylistModelType = {
               id: item.id,
               name: item.name,
               artists: item.ar,
-              album: item.al.name,
-              playTime: 0,
+              album: item.al,
+              playTime: formatMilliSeconds(item.dt),
             }))
           }
         })

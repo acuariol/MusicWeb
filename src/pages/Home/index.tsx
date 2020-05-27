@@ -29,17 +29,27 @@ class Home extends Component<HomeProps, State> {
 
   componentDidMount() {
 
-    this.props.dispatch({
+    const {dispatch} = this.props
+    dispatch({
       type: 'song/fetchBanner'
     })
-
-    this.props.dispatch({
+    dispatch({
       type: 'song/fetchTopSong'
     })
 
-
   }
 
+  componentWillUnmount() {
+    const {dispatch} = this.props
+    dispatch({
+      type: 'mv/setState',
+      payload:{
+        playing: false,
+        url: '',
+      }
+    })
+
+  }
 
   openUrl = (url: string) => {
     window.open(url, '_block')

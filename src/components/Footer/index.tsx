@@ -6,6 +6,7 @@ import {ConnectState, Dispatch} from "@/models/connect";
 import CopyrightIcon from '@material-ui/icons/Copyright';
 
 import FormattedMessage from '@/components/FormattedMessage'
+import {history} from "@@/core/history";
 
 const styles = (theme: Theme) => createStyles({
   footerContainer: {
@@ -74,7 +75,6 @@ const social = [
 ]
 
 
-
 class Foo extends PureComponent<FooterProps> {
   componentDidMount() {
     this.props.dispatch({
@@ -82,6 +82,17 @@ class Foo extends PureComponent<FooterProps> {
       payload: {limit: 10}
     })
 
+  }
+
+  handleSearch = (item: any) => {
+
+    history.push(`/search?keywords=${item.name}&type=1`)
+
+    window.scrollTo({
+      left: 0,
+      top:0,
+      behavior: 'smooth',
+    })
   }
 
 
@@ -99,7 +110,9 @@ class Foo extends PureComponent<FooterProps> {
                 </Typography>
                 {
                   (topArtists || []).map(o => (
-                    <Typography variant="body1" key={o.id} className={classes.text}>
+                    <Typography
+                      variant="body1" key={o.id} className={classes.text} onClick={() => this.handleSearch(o)}
+                    >
                       {o.name}
                     </Typography>
                   ))

@@ -42,4 +42,12 @@ export const formatTime = (timeStamp: number, detail?: boolean): string => {
 
 export const getPageQuery = () => parse(window.location.href.split('?')[1]);
 
+export const setTrackQueue = (data: any[]) => {
+  localStorage.setItem('track-queue', JSON.stringify(data));
+}
+
+export const getTrackQueue = () => {
+  const d = localStorage.getItem('track-queue');
+  if (d) return JSON.parse(d); return []
+}
 

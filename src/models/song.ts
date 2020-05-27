@@ -104,7 +104,7 @@ function formatSongs(songs: []): Array<SongsItemProps> {
       playTime: formatMilliSeconds(item.duration),
       duration: item.duration,
       artists:item.artists,
-      album: item.album.name
+      album: item.album
     }
   })
 }

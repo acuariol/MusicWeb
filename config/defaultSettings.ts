@@ -1,7 +1,9 @@
 export interface DefaultSettings {
   title: string;
+  appName:string
 }
 
 export default {
-  title: 'Ant Design Pro',
+  title: 'Beatz',
+  appName:'Beatz',
 } as DefaultSettings;

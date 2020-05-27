@@ -5,6 +5,7 @@ import {SongModelState} from './song';
 import {PlayModelState} from './play';
 import {MvModelState} from './mv';
 import {PlaylistModelState} from './playlist';
+import {PlayHistoryModelState} from './playHistory';
 
 
 export {
@@ -14,7 +15,8 @@ export {
   SongModelState,
   PlayModelState,
   MvModelState,
-  PlaylistModelState
+  PlaylistModelState,
+  PlayHistoryModelState
 };
 
 
@@ -43,7 +45,8 @@ export interface ConnectState {
   song: SongModelState,
   play: PlayModelState,
   mv: MvModelState,
-  playlist: PlaylistModelState
+  playlist: PlaylistModelState,
+  playHistory: PlayHistoryModelState
 }
 
 // export interface Route extends MenuDataItem {

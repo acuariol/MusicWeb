@@ -1,6 +1,8 @@
 import {Effect, Reducer} from 'umi';
 import {checkMusic, songDetail, songUrl} from '@/services/song';
 
+import {formatMilliSeconds} from '@/utils/utils'
+
 export interface PlayModelState {
   url: string
   playTime?: number,
@@ -103,6 +105,24 @@ const PlayModel: PlayModelType = {
               }
             },
           });
+
+          yield put({
+            type: 'playHistory/add',
+            payload: {
+              name: d.name,
+              id: d.id,
+              artists: d.ar,
+              album: d.al,
+              playTime: formatMilliSeconds(d.dt)
+            },
+          });
+          // id: number | string
+          // name?: string,
+          //   artists?: string[],
+          //   album?: string
+          // playTime?: string
+
+
         }
 
       } else {

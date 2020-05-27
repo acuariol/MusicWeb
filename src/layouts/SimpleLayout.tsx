@@ -4,6 +4,7 @@ import SpeedDials from '@/components/SpeedDials'
 import PlayBar from '@/components/PlayBar';
 import Footer from '@/components/Footer';
 import Broadcast from '@/components/Broadcast'
+import HistoryDrawer from '@/components/HistoryDrawer'
 import classes from './styles.less'
 
 const theme = createMuiTheme({
@@ -37,6 +38,7 @@ const SimpleLayout = ({children}: SimpleLayoutProps) => {
         </div>
         <SpeedDials />
         <Footer />
+        <HistoryDrawer />
       </ThemeProvider>
     </>
   )

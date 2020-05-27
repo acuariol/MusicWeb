@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Typography, Divider, Grid, Hidden} from '@material-ui/core'
+import {Typography, Divider, Grid, Hidden, ListSubheader, Card} from '@material-ui/core'
 import {connect} from 'umi'
 import {ConnectState, Dispatch} from "@/models/connect";
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -22,6 +22,12 @@ const styles = {
   padding: '2rem'
 }
 
+const stickyTitle = {
+  backgroundColor: '#fafafa',
+  padding: '1rem 4px',
+  margin: '0 -4px'
+}
+
 class Comments extends React.PureComponent<Props, State> {
 
 
@@ -38,7 +44,7 @@ class Comments extends React.PureComponent<Props, State> {
 
             <div style={{padding: '0 0 24px'}}>
               <Typography gutterBottom variant="h6">
-                <FormattedMessage id="comment.number"/>：{total}
+                <FormattedMessage id="comment.number" />：{total}
               </Typography>
               <Divider />
             </div>
@@ -46,27 +52,30 @@ class Comments extends React.PureComponent<Props, State> {
             {loading && <div style={styles}><CircularProgress /></div>}
 
             <div hidden={loading}>
-              {
-                hotComments.length !== 0 && (
-                  <Typography variant="h6" gutterBottom style={{padding: '0 0 14px'}}>
-                    <FormattedMessage id="comment.wonderful"/>
-                  </Typography>
-                )
-              }
+              <ListSubheader disableGutters>
+                {
+                  hotComments.length !== 0 && (
+                    <Typography variant="h6" gutterBottom style={stickyTitle}>
+                      <FormattedMessage id="comment.wonderful" />
+                    </Typography>
+                  )
+                }
+              </ListSubheader>
 
               {
                 hotComments.map((item: any, index) => (
                   <CommentsCard key={item.commentId} index={index} item={item} />
                 ))
               }
-
-              {
-                comments.length !== 0 && (
-                  <Typography variant="h6" gutterBottom style={{padding: '30px 0 14px'}}>
-                    <FormattedMessage id="comment.new"/>
-                  </Typography>
-                )
-              }
+              <ListSubheader disableGutters>
+                {
+                  comments.length !== 0 && (
+                    <Typography variant="h6" gutterBottom style={stickyTitle}>
+                      <FormattedMessage id="comment.new" />
+                    </Typography>
+                  )
+                }
+              </ListSubheader>
 
               {
                 comments.map((item: any, index) => (
@@ -74,9 +83,7 @@ class Comments extends React.PureComponent<Props, State> {
                 ))
               }
 
-
             </div>
-
 
 
           </Grid>
