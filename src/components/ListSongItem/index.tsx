@@ -99,7 +99,7 @@ function ListSongItem(props: ListSongItemProps) {
 
   return (
     <ListItem className={classes.listItem}>
-      <Typography variant="body1" noWrap>
+      <Typography variant="body1" noWrap style={{paddingLeft:8}}>
         {index&&`${formatNumber(index)}`}
       </Typography>
 

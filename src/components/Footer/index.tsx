@@ -93,6 +93,11 @@ class Foo extends PureComponent<FooterProps> {
       top:0,
       behavior: 'smooth',
     })
+
+    this.props.dispatch({
+      type: 'global/setState',
+      payload: {keywords: item.name}
+    })
   }
 
 

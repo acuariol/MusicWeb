@@ -1,12 +1,12 @@
-import {Subscription, Reducer} from 'umi';
-import {findIndex, filter} from 'lodash'
-import {setTrackQueue, getTrackQueue} from '@/utils/utils'
+import {Reducer, Subscription} from 'umi';
+import {filter, findIndex} from 'lodash';
+import {getTrackQueue, setTrackQueue} from '@/utils/utils';
 
-const TrackQueueMaxLength = 99
+const TrackQueueMaxLength = 300;
 
 export interface PlayHistoryModelState {
-  open: boolean
-  list: any[]
+  open: boolean;
+  list: any[];
 }
 
 export interface PlayHistoryModelType {
@@ -26,7 +26,7 @@ const PlayHistoryModel: PlayHistoryModelType = {
 
   state: {
     open: false,
-    list: getTrackQueue()
+    list: getTrackQueue(),
   },
 
   effects: {},
@@ -35,52 +35,60 @@ const PlayHistoryModel: PlayHistoryModelType = {
     setState(state, {payload}): PlayHistoryModelState {
       return {
         ...state,
-        ...payload
+        ...payload,
       };
     },
     add(state, {payload}): PlayHistoryModelState {
       // @ts-ignore
-      const {list} = state
+      const {list} = state;
       // @ts-ignore
-      const index = findIndex(list, o => o.id === payload.id)
+      const index = findIndex(list, (o) => o.id === payload.id);
 
       if (index === -1) {
-        const newList = [payload, ...list]
+        const newList = [payload, ...list];
 
-        if (list.length >= TrackQueueMaxLength)
+        if (list.length >= TrackQueueMaxLength) {
           setTrackQueue([payload])
-        else setTrackQueue(newList)
+          // @ts-ignore
+          return {
+            ...state,
+            // @ts-ignore
+            list: [payload],
+          };
+        }
+
+        setTrackQueue(newList);
+
         // @ts-ignore
         return {
           ...state,
           // @ts-ignore
-          list: newList
-        }
+          list: newList,
+        };
       }
 
       // @ts-ignore
       return {
-        ...state
-      }
+        ...state,
+      };
     },
 
     delete(state, {payload}): PlayHistoryModelState {
       // @ts-ignore
-      const newList = filter(state.list, o => o.id !== payload.id)
+      const newList = filter(state.list, (o) => o.id !== payload.id);
 
-      setTrackQueue(newList)
+      setTrackQueue(newList);
       // @ts-ignore
       return {
         ...state,
         // @ts-ignore
-        list: newList
-      }
-    }
+        list: newList,
+      };
+    },
   },
 
   subscriptions: {
     setup(): void {
-
     },
   },
 };

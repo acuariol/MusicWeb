@@ -7,6 +7,7 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
+import Skip from '@/components/Skip'
 import {formatMilliSeconds} from '@/utils/utils';
 import ProgressTime from '../ProgressTime';
 
@@ -25,6 +26,9 @@ const styles = () => createStyles({
   },
   playTime: {
     padding: '0 12px'
+  },
+  icon:{
+    color:'#fff'
   }
 });
 
@@ -56,13 +60,12 @@ class Control extends React.PureComponent<ControlProps> {
 
     const time = formatMilliSeconds(playTime)
 
-    console.log('render Control')
     return (
       <div className={classes.root}>
 
-        <IconButton color="inherit">
-          <SkipPreviousIcon color="inherit" />
-        </IconButton>
+        <Skip type="prev">
+          <SkipPreviousIcon className={classes.icon} />
+        </Skip>
 
         <IconButton onClick={this.togglePlaying}>
           {
@@ -71,9 +74,10 @@ class Control extends React.PureComponent<ControlProps> {
           }
         </IconButton>
 
-        <IconButton color="inherit">
-          <SkipNextIcon color="inherit" />
-        </IconButton>
+        <Skip type="next">
+          <SkipNextIcon className={classes.icon} />
+        </Skip>
+
 
         <div style={{padding: '0 24px', flex: 1}}>
           <PlaySlider />

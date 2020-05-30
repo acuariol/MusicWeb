@@ -49,7 +49,7 @@ class Search extends Component<SearchProps> {
 
 
   componentDidMount() {
-    console.log('componentDidMount')
+    // console.log('componentDidMount')
     const {location: {query}, keywords: k, type: t, dispatch} = this.props;
 
     const keywords = query.keywords || k;
@@ -66,13 +66,13 @@ class Search extends Component<SearchProps> {
   }
 
   componentDidUpdate(prevProps: Readonly<SearchProps>,) {
-    console.log('componentDidUpdate')
+    // console.log('componentDidUpdate')
     // console.log({prevProps})
     // console.log(this.props)
     const {keywords, type} = this.props
     if (keywords && !isEqual({keywords, type}, {keywords: prevProps.keywords, type: prevProps.type})) {
       this.fetchSearch(keywords, type)
-      console.log('可以请求数据')
+      // console.log('可以请求数据')
     }
 
   }

@@ -126,7 +126,7 @@ const PlayModel: PlayModelType = {
         }
 
       } else {
-        alert(message)
+        alert(message||'没有版权')
       }
 
     },
