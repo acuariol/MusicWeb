@@ -22,7 +22,10 @@ export default defineConfig({
   routes,
   title: false,
   ignoreMomentLocale: true,
-
+  history: {
+    type: 'hash'
+  },
+  favicon: '/favicon.png',
   publicPath: '/beatz/',
   base: '/beatz/',
 });
