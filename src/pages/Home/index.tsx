@@ -59,9 +59,9 @@ class Home extends Component<HomeProps, State> {
 
     const {banners, topSong} = this.props;
 
-
     return (
       <>
+
         <Grid container spacing={5} alignItems="stretch">
           <Grid item sm={12} xs={12} md={12} xl={8} lg={8}>
             <div className={styles.content}>

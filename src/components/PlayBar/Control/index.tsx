@@ -27,8 +27,8 @@ const styles = () => createStyles({
   playTime: {
     padding: '0 12px'
   },
-  icon:{
-    color:'#fff'
+  icon: {
+    color: '#fff'
   }
 });
 
@@ -55,6 +55,7 @@ class Control extends React.PureComponent<ControlProps> {
   }
 
 
+
   render() {
     const {classes, playing, playTime} = this.props;
 
@@ -63,7 +64,7 @@ class Control extends React.PureComponent<ControlProps> {
     return (
       <div className={classes.root}>
 
-        <Skip type="prev">
+        <Skip type="prev" >
           <SkipPreviousIcon className={classes.icon} />
         </Skip>
 

@@ -1,8 +1,6 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {withStyles, Slider, createStyles, Theme} from "@material-ui/core";
-
 import {connect} from 'umi';
-// import {PlayModelState} from "@/models/play";
 import {ConnectState, Dispatch} from "@/models/connect";
 import ReactPlayer from "react-player";
 
@@ -51,7 +49,7 @@ interface HocSliderProps {
   [propsName: string]: any
 }
 
-class HocSlider extends Component<HocSliderProps> {
+class HocSlider extends React.PureComponent<HocSliderProps> {
 
   playRef: any;
 
@@ -118,6 +116,14 @@ class HocSlider extends Component<HocSliderProps> {
 
   }
 
+  onEnded = () => {
+    const {dispatch} = this.props
+    dispatch({
+      type: 'play/skip',
+      payload: {type: 'next'}
+    })
+
+  }
 
   onDuration = (duration: any) => {
     this.setPlayState({playTime: duration * 1000})
@@ -179,6 +185,7 @@ class HocSlider extends Component<HocSliderProps> {
           onError={this.onError}
           onPause={this.onPause}
           onPlay={this.onPlay}
+          onEnded={this.onEnded}
           onBuffer={() => console.log('onBuffer')}
           onSeek={e => console.log('onSeek', e)}
           onProgress={this.onProgress}
@@ -197,7 +204,6 @@ const mapStateToProps = ({play}: ConnectState) => ({
   playing: play.playing,
   volume: play.volume,
   muted: play.muted,
-
 })
 
 export default connect(mapStateToProps)(HocSlider)

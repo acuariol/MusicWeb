@@ -1,5 +1,10 @@
-# MusicWeb
+# ❤一个人名为Beatz的音乐网站 ❤
 
+技术使用: [React](https://reactjs.org/), [dva.js](https://dvajs.com/), [umi.js](https://umijs.org/docs)
+
+UI框架:  [material-ui](https://material-ui.com/)
+
+enjoy😊
  
 ## 环境准备
 
@@ -35,16 +40,9 @@ npm run build
 npm run lint
 ```
 
-You can also use script to auto fix some lint error:
 
-```bash
-npm run lint:fix
-```
+#### 灵感来源
+[Binaryify](https://github.com/Binaryify/NeteaseCloudMusicApi)
 
-### Test code
-
-```bash
-npm test
-```
 
  

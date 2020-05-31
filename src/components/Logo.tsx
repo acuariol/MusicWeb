@@ -1,6 +1,7 @@
 import React from 'react'
 import {makeStyles} from '@material-ui/core'
 import {history} from 'umi'
+import * as defaultSettings from '../../config/defaultSettings'
 
 const useStyles = makeStyles(theme => {
   // console.log(theme)
@@ -27,7 +28,7 @@ export default () => {
   return (
     <div className={classes.logo} onClick={() => history.replace('/')}>
       <h1 className={classes.font}>
-        Beatz
+        {defaultSettings.default.appName}
       </h1>
     </div>
   )
