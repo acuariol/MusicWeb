@@ -1,4 +1,4 @@
-# ❤一个人名为Beatz的音乐网站 ❤
+# ❤一个名为Beatz的音乐网站 ❤
 
 技术使用: [React](https://reactjs.org/), [dva.js](https://dvajs.com/), [umi.js](https://umijs.org/docs)
 
