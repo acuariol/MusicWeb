@@ -1,5 +1,7 @@
 # ❤一个名为Beatz的音乐网站 ❤
 
+## 在线访问 : http://acuario.cn/beatz/#/
+
 技术使用: [React](https://reactjs.org/), [dva.js](https://dvajs.com/), [umi.js](https://umijs.org/docs)
 
 UI框架:  [material-ui](https://material-ui.com/)
