@@ -26,6 +26,6 @@ export default defineConfig({
     type: 'hash'
   },
   favicon: '/beatz/favicon.png',
-  publicPath: '/beatz/',
+  // publicPath: '',
   // base: '/beatz/',
 });
